@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://ocimpspks2fu"]
+
+[ext_resource type="Texture2D" uid="uid://vf3asswa033p" path="res://assets/sprites/BG1.png" id="1_rugtm"]
+[ext_resource type="Texture2D" uid="uid://cdoqnbmri6qtp" path="res://assets/sprites/BG2.png" id="2_g6r60"]
+[ext_resource type="Texture2D" uid="uid://btgrtrg8xvfid" path="res://assets/sprites/BG3.png" id="3_tmk5e"]
+[ext_resource type="Script" path="res://scripts/prologue_bg.gd" id="4_k5ug3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcid8"]
+atlas = ExtResource("1_rugtm")
+region = Rect2(0, 0, 1024, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36rja"]
+atlas = ExtResource("2_g6r60")
+region = Rect2(0, 0, 1024, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0wbb"]
+atlas = ExtResource("3_tmk5e")
+region = Rect2(0, 0, 1024, 576)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ykar0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcid8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36rja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0wbb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="Prologue" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3.65, 3.65)
+
+[node name="BG" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ykar0")
+frame_progress = 0.496466
+script = ExtResource("4_k5ug3")

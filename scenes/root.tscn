@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8u2oi6rvi5pm"]
+
+[ext_resource type="PackedScene" uid="uid://ocimpspks2fu" path="res://scenes/prologue.tscn" id="1_8fha3"]
+[ext_resource type="Script" path="res://scripts/root.gd" id="1_ewk7w"]
+
+[node name="Root" type="Node"]
+script = ExtResource("1_ewk7w")
+
+[node name="Prologue" parent="." instance=ExtResource("1_8fha3")]

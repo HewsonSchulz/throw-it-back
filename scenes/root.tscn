@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8u2oi6rvi5pm"]
+[gd_scene load_steps=6 format=3 uid="uid://b8u2oi6rvi5pm"]
 
 [ext_resource type="PackedScene" uid="uid://ocimpspks2fu" path="res://scenes/prologue.tscn" id="1_8fha3"]
 [ext_resource type="Script" path="res://scripts/root.gd" id="1_ewk7w"]
+[ext_resource type="Shader" path="res://shaders/pixel_art_WINDOW.gdshader" id="3_kbogb"]
+[ext_resource type="Script" path="res://scripts/window.gd" id="4_2ajn4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c1bla"]
+shader = ExtResource("3_kbogb")
+shader_parameter/pixel_size = 10.0
+shader_parameter/fade = 1.0
+shader_parameter/color_levels = 16
 
 [node name="Root" type="Node"]
 script = ExtResource("1_ewk7w")
 
 [node name="Prologue" parent="." instance=ExtResource("1_8fha3")]
+
+[node name="Window" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_c1bla")
+offset_left = -512.0
+offset_top = -288.0
+offset_right = 512.0
+offset_bottom = 288.0
+script = ExtResource("4_2ajn4")

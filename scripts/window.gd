@@ -1,10 +1,13 @@
-extends AnimatedSprite2D
+extends ColorRect
+
+@export var fade_delay : float = 1.0
+@export var fade_duration : float = 2.0
 
 func _ready():
 	# set initial fade to 0 (black)
 	set_fade(0.0)
 
-	fade(1, 2)
+	fade(fade_delay, fade_duration)
 
 func set_fade(value: float):
 	# modifies shader `fade` parameter

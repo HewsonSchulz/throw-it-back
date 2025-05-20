@@ -82,8 +82,5 @@ horizontal_alignment = 1
 script = ExtResource("7_njyrp")
 hover_distance = 50.0
 hover_duration = 3.0
-wait_time = null
-init_wait_time = null
-fade_in_duration = null
 
 [connection signal="next_frame" from="BG" to="BG" method="_on_next_frame"]

@@ -21,13 +21,3 @@ func _ready():
 	tween.tween_property(self, "position:y", start_position.y, hover_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	# wait
 	tween.tween_interval(wait_time)
-
-func _ready():
-	# invisible (alpha = 0)
-	modulate.a = 0.0
-	
-	# wait
-	await get_tree().create_timer(init_wait_time).timeout
-	
-	# fade in
-	tween.tween_property(self, "modulate:a", 1.0, fade_in_duration)

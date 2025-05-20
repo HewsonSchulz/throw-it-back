@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ocimpspks2fu"]
+[gd_scene load_steps=13 format=3 uid="uid://ocimpspks2fu"]
 
 [ext_resource type="Shader" path="res://shaders/pixel_art.gdshader" id="1_7jfds"]
 [ext_resource type="Texture2D" uid="uid://vf3asswa033p" path="res://assets/sprites/BG1.png" id="1_rugtm"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://btgrtrg8xvfid" path="res://assets/sprites/BG3.png" id="3_tmk5e"]
 [ext_resource type="Texture2D" uid="uid://buoyi231w53ne" path="res://assets/sprites/BG4.jpg" id="4_k72x8"]
 [ext_resource type="Script" path="res://scripts/prologue_bg.gd" id="5_f6jhs"]
-[ext_resource type="Script" path="res://scripts/prologue_message.gd" id="7_njyrp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hjefu"]
 shader = ExtResource("1_7jfds")
@@ -50,9 +49,6 @@ animations = [{
 "speed": 0.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_4omg3"]
-font_size = 48
-
 [node name="Prologue" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -63,24 +59,5 @@ material = SubResource("ShaderMaterial_hjefu")
 sprite_frames = SubResource("SpriteFrames_ykar0")
 frame_progress = 0.496466
 script = ExtResource("5_f6jhs")
-
-[node name="Message" type="Label" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -94.5
-offset_top = 111.0
-offset_right = 94.5
-offset_bottom = 178.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "[ space ]"
-label_settings = SubResource("LabelSettings_4omg3")
-horizontal_alignment = 1
-script = ExtResource("7_njyrp")
-hover_distance = 50.0
-hover_duration = 3.0
 
 [connection signal="next_frame" from="BG" to="BG" method="_on_next_frame"]

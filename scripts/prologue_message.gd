@@ -1,3 +1,5 @@
+#!
+
 extends Label
 
 var tween: Tween

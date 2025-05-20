@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://ocimpspks2fu"]
+[gd_scene load_steps=15 format=3 uid="uid://ocimpspks2fu"]
 
 [ext_resource type="Shader" path="res://shaders/pixel_art.gdshader" id="1_7jfds"]
 [ext_resource type="Texture2D" uid="uid://vf3asswa033p" path="res://assets/sprites/BG1.png" id="1_rugtm"]
 [ext_resource type="Texture2D" uid="uid://cdoqnbmri6qtp" path="res://assets/sprites/BG2.png" id="2_g6r60"]
 [ext_resource type="Texture2D" uid="uid://btgrtrg8xvfid" path="res://assets/sprites/BG3.png" id="3_tmk5e"]
+[ext_resource type="Texture2D" uid="uid://buoyi231w53ne" path="res://assets/sprites/BG4.jpg" id="4_k72x8"]
+[ext_resource type="Script" path="res://scripts/prologue_bg.gd" id="5_f6jhs"]
+[ext_resource type="Script" path="res://scripts/prologue_message.gd" id="7_njyrp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hjefu"]
 shader = ExtResource("1_7jfds")
@@ -17,6 +20,10 @@ region = Rect2(0, 0, 1024, 576)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_36rja"]
 atlas = ExtResource("2_g6r60")
+region = Rect2(0, 0, 1024, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuxd3"]
+atlas = ExtResource("4_k72x8")
 region = Rect2(0, 0, 1024, 576)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u0wbb"]
@@ -33,12 +40,18 @@ animations = [{
 "texture": SubResource("AtlasTexture_36rja")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_fuxd3")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_u0wbb")
 }],
 "loop": false,
 "name": &"default",
 "speed": 0.0
 }]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4omg3"]
+font_size = 48
 
 [node name="Prologue" type="Node2D"]
 
@@ -49,3 +62,28 @@ zoom = Vector2(3.65, 3.65)
 material = SubResource("ShaderMaterial_hjefu")
 sprite_frames = SubResource("SpriteFrames_ykar0")
 frame_progress = 0.496466
+script = ExtResource("5_f6jhs")
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.5
+offset_top = 111.0
+offset_right = 94.5
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[ space ]"
+label_settings = SubResource("LabelSettings_4omg3")
+horizontal_alignment = 1
+script = ExtResource("7_njyrp")
+hover_distance = 50.0
+hover_duration = 3.0
+wait_time = null
+init_wait_time = null
+fade_in_duration = null
+
+[connection signal="next_frame" from="BG" to="BG" method="_on_next_frame"]

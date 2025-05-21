@@ -27,8 +27,7 @@ offset_left = -450.0
 offset_top = -275.0
 offset_right = -1602.0
 offset_bottom = -923.0
-difficulty = 5
-color_variance = 0.8
+depth = 5
 
 [node name="RootCamera" type="Camera2D" parent="."]
 zoom = Vector2(3.65, 3.65)

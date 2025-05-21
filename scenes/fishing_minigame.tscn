@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://eh5ngvee0aab"]
+
+[ext_resource type="Script" path="res://scripts/fishing_minigame.gd" id="1_603vi"]
+
+[node name="FishingMinigame" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_603vi")
+
+[node name="Grid" type="GridContainer" parent="."]
+layout_mode = 0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0

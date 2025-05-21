@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8u2oi6rvi5pm"]
+[gd_scene load_steps=7 format=3 uid="uid://b8u2oi6rvi5pm"]
 
 [ext_resource type="Script" path="res://scripts/root.gd" id="1_ewk7w"]
-[ext_resource type="PackedScene" uid="uid://eh5ngvee0aab" path="res://scenes/fishing_minigame.tscn" id="2_o4l7k"]
+[ext_resource type="PackedScene" uid="uid://ocimpspks2fu" path="res://scenes/prologue.tscn" id="2_4f474"]
 [ext_resource type="Shader" path="res://shaders/pixel_art_WINDOW.gdshader" id="3_kbogb"]
-[ext_resource type="Script" path="res://scripts/window.gd" id="4_2ajn4"]
+[ext_resource type="AudioStream" uid="uid://bl6ie8wm03nmj" path="res://assets/audio/ambience1.mp3" id="5_578qj"]
+[ext_resource type="Script" path="res://scripts/ambience.gd" id="6_okgng"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c1bla"]
 shader = ExtResource("3_kbogb")
@@ -14,20 +15,21 @@ shader_parameter/color_levels = 16
 [node name="Root" type="Node"]
 script = ExtResource("1_ewk7w")
 
-[node name="Window" type="ColorRect" parent="."]
+[node name="Prologue" parent="." instance=ExtResource("2_4f474")]
+
+[node name="PixelView" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_c1bla")
 offset_left = -512.0
 offset_top = -288.0
 offset_right = 512.0
 offset_bottom = 288.0
-script = ExtResource("4_2ajn4")
-
-[node name="FishingMinigame" parent="." instance=ExtResource("2_o4l7k")]
-offset_left = -450.0
-offset_top = -275.0
-offset_right = -1602.0
-offset_bottom = -923.0
-depth = 5
 
 [node name="RootCamera" type="Camera2D" parent="."]
 zoom = Vector2(3.65, 3.65)
+
+[node name="Ambience" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_578qj")
+autoplay = true
+bus = &"Ambience"
+script = ExtResource("6_okgng")
+FADE_DURATION = 5.0

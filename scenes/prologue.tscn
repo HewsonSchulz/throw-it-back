@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ocimpspks2fu"]
+[gd_scene load_steps=15 format=3 uid="uid://ocimpspks2fu"]
 
 [ext_resource type="Shader" path="res://shaders/pixel_art.gdshader" id="1_7jfds"]
 [ext_resource type="Texture2D" uid="uid://vf3asswa033p" path="res://assets/sprites/BG1.png" id="1_rugtm"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://btgrtrg8xvfid" path="res://assets/sprites/BG3.png" id="3_tmk5e"]
 [ext_resource type="Texture2D" uid="uid://buoyi231w53ne" path="res://assets/sprites/BG4.jpg" id="4_k72x8"]
 [ext_resource type="Script" path="res://scripts/prologue_bg.gd" id="5_f6jhs"]
+[ext_resource type="FontFile" uid="uid://bvaqjw0jx073n" path="res://assets/fonts/TcacrylichandthickRegular.otf" id="7_aheay"]
+[ext_resource type="Script" path="res://scripts/prologue_message.gd" id="7_uvv1o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hjefu"]
 shader = ExtResource("1_7jfds")
@@ -57,7 +59,25 @@ zoom = Vector2(3.65, 3.65)
 [node name="BG" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_hjefu")
 sprite_frames = SubResource("SpriteFrames_ykar0")
-frame_progress = 0.496466
 script = ExtResource("5_f6jhs")
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -261.0
+offset_top = 111.0
+offset_right = 261.0
+offset_bottom = 213.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_aheay")
+theme_override_font_sizes/font_size = 55
+text = "press any key"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_uvv1o")
 
 [connection signal="next_frame" from="BG" to="BG" method="_on_next_frame"]

@@ -1,4 +1,4 @@
-#! ROOT
+# ROOT
 extends Node
 
 func _input(e):

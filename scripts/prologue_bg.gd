@@ -1,11 +1,11 @@
 extends AnimatedSprite2D
 
-signal next_frame
 
-@onready var prologue_bg = $"."
-
+@onready var bg = $"."
 @export var fade_delay : float = 1.0
 @export var fade_duration : float = 2.0
+@onready var footsteps = $"../Footsteps"
+var is_active: bool = false
 
 func set_fade(value: float):
 	# modifies shader `fade` parameter
@@ -15,7 +15,8 @@ func _ready():
 	# set initial fade to 0 (black)
 	set_fade(0.0)
 
-	fade(fade_delay, fade_duration)
+	await fade(fade_delay, fade_duration)
+	is_active = true
 
 func fade(delay: float, duration: float):
 	var tween = create_tween()
@@ -25,17 +26,35 @@ func fade(delay: float, duration: float):
 	
 	# tween fade property from 0 to 1
 	tween.tween_method(set_fade, 0.0, 1.0, duration)
-
-#######################
-
-func _on_next_frame():
-# go to next frame
-	if frame < sprite_frames.get_frame_count(animation) - 1:
-		frame += 1
-	else:
-		frame = 0
+	
+	return tween.finished  # allows `await` to wait for completion
 
 
-#func _input(e): #!
-	#if e.is_action_pressed('bruh'):
-		#prologue_bg.emit_signal("next_frame")
+
+func _input(e):
+	if not is_active or bg.frame >= 2:
+		return
+
+	# if any key is pressed - including mouse-down, not including `esc`
+	if (e is InputEventKey and e.pressed and e.keycode != KEY_ESCAPE) or \
+	   (e is InputEventMouseButton and e.pressed):
+
+		is_active = false
+		var tween = create_tween()
+		
+		# fade out
+		tween.tween_method(set_fade, 1.0, 0.0, 0.4)
+		footsteps.play()
+		
+		await tween.finished
+		
+		# next frame
+		bg.frame += 1
+		
+		# fade in
+		tween = create_tween()
+		tween.tween_method(set_fade, 0.0, 1.0, 0.4)
+		await tween.finished
+		
+		# Re-enable input
+		is_active = true

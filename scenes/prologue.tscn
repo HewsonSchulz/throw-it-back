@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ocimpspks2fu"]
+[gd_scene load_steps=16 format=3 uid="uid://ocimpspks2fu"]
 
 [ext_resource type="Shader" path="res://shaders/pixel_art.gdshader" id="1_7jfds"]
 [ext_resource type="Texture2D" uid="uid://vf3asswa033p" path="res://assets/sprites/BG1.png" id="1_rugtm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/prologue_bg.gd" id="5_f6jhs"]
 [ext_resource type="FontFile" uid="uid://bvaqjw0jx073n" path="res://assets/fonts/TcacrylichandthickRegular.otf" id="7_aheay"]
 [ext_resource type="Script" path="res://scripts/prologue_message.gd" id="7_uvv1o"]
+[ext_resource type="AudioStream" uid="uid://fj0u0kd04geu" path="res://assets/audio/run3.wav" id="9_x3afy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hjefu"]
 shader = ExtResource("1_7jfds")
@@ -80,4 +81,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_uvv1o")
 
-[connection signal="next_frame" from="BG" to="BG" method="_on_next_frame"]
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_x3afy")
+volume_db = 2.0
+bus = &"SFX"

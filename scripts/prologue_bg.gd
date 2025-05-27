@@ -5,7 +5,10 @@ extends AnimatedSprite2D
 @export var fade_delay : float = 1.0
 @export var fade_duration : float = 2.0
 @onready var footsteps = $"../Footsteps"
+@onready var message_timer = $"../Message/MessageTimer"
 var is_active: bool = false
+signal hide_message
+signal kill_message
 
 func set_fade(value: float):
 	# modifies shader `fade` parameter
@@ -38,7 +41,13 @@ func _input(e):
 	# if any key is pressed - including mouse-down, not including `esc`
 	if (e is InputEventKey and e.pressed and e.keycode != KEY_ESCAPE) or \
 	   (e is InputEventMouseButton and e.pressed):
-
+		
+		# reset message timer
+		message_timer.wait_time = 12
+		message_timer.start()
+		# hide message
+		hide_message.emit()
+		
 		is_active = false
 		var tween = create_tween()
 		
@@ -56,5 +65,7 @@ func _input(e):
 		tween.tween_method(set_fade, 0.0, 1.0, 0.4)
 		await tween.finished
 		
-		# Re-enable input
-		is_active = true
+		if bg.frame >= 2:
+			kill_message.emit()
+		else:
+			is_active = true

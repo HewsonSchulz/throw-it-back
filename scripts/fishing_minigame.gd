@@ -11,7 +11,7 @@ var tile_scene: PackedScene = preload("res://scenes/tile.tscn")
 const GRID_SIZE_PX = Vector2(400, 400)
 
 var unique_color: Color
-
+	
 func _ready():
 	randomize()
 	grid.custom_minimum_size = GRID_SIZE_PX

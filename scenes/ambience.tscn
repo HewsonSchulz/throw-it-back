@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmgcryu8klthr"]
+
+[ext_resource type="AudioStream" uid="uid://bl6ie8wm03nmj" path="res://assets/audio/ambience1.mp3" id="1_ue1a4"]
+[ext_resource type="Script" path="res://scripts/ambience.gd" id="2_ji422"]
+
+[node name="Ambience" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_ue1a4")
+autoplay = true
+bus = &"Ambience"
+script = ExtResource("2_ji422")
+FADE_DURATION = 5.0

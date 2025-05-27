@@ -30,10 +30,4 @@ func _on_timer_timeout():
 
 
 func _on_bg_hide_message():
-	modulate.a = 0.0  # hide
-
-
-func _on_bg_kill_message():
-	# disable node
-	visible = false
-	queue_free()
+	modulate.a = -0.0  # hide

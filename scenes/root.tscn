@@ -1,10 +1,54 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8u2oi6rvi5pm"]
+[gd_scene load_steps=15 format=3 uid="uid://b8u2oi6rvi5pm"]
 
 [ext_resource type="Script" path="res://scripts/root.gd" id="1_ewk7w"]
-[ext_resource type="PackedScene" uid="uid://ocimpspks2fu" path="res://scenes/prologue.tscn" id="2_4f474"]
+[ext_resource type="Shader" path="res://shaders/pixel_art.gdshader" id="2_1rr56"]
+[ext_resource type="Texture2D" uid="uid://vf3asswa033p" path="res://assets/sprites/BG1.png" id="3_21dop"]
 [ext_resource type="Shader" path="res://shaders/pixel_art_WINDOW.gdshader" id="3_kbogb"]
-[ext_resource type="AudioStream" uid="uid://bl6ie8wm03nmj" path="res://assets/audio/ambience1.mp3" id="5_578qj"]
-[ext_resource type="Script" path="res://scripts/ambience.gd" id="6_okgng"]
+[ext_resource type="Texture2D" uid="uid://cdoqnbmri6qtp" path="res://assets/sprites/BG2.png" id="4_4284t"]
+[ext_resource type="Texture2D" uid="uid://buoyi231w53ne" path="res://assets/sprites/BG4.jpg" id="5_o0eyg"]
+[ext_resource type="Texture2D" uid="uid://btgrtrg8xvfid" path="res://assets/sprites/BG3.png" id="6_duca0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x45lx"]
+shader = ExtResource("2_1rr56")
+shader_parameter/pixel_size = 1.0
+shader_parameter/fade = 1.0
+shader_parameter/color_levels = 100
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcid8"]
+atlas = ExtResource("3_21dop")
+region = Rect2(0, 0, 1024, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36rja"]
+atlas = ExtResource("4_4284t")
+region = Rect2(0, 0, 1024, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuxd3"]
+atlas = ExtResource("5_o0eyg")
+region = Rect2(0, 0, 1024, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0wbb"]
+atlas = ExtResource("6_duca0")
+region = Rect2(0, 0, 1024, 576)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wqxb7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcid8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36rja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuxd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0wbb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c1bla"]
 shader = ExtResource("3_kbogb")
@@ -15,7 +59,10 @@ shader_parameter/color_levels = 16
 [node name="Root" type="Node"]
 script = ExtResource("1_ewk7w")
 
-[node name="Prologue" parent="." instance=ExtResource("2_4f474")]
+[node name="BG" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_x45lx")
+sprite_frames = SubResource("SpriteFrames_wqxb7")
+frame = 2
 
 [node name="PixelView" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_c1bla")
@@ -24,12 +71,5 @@ offset_top = -288.0
 offset_right = 512.0
 offset_bottom = 288.0
 
-[node name="RootCamera" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3.65, 3.65)
-
-[node name="Ambience" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_578qj")
-autoplay = true
-bus = &"Ambience"
-script = ExtResource("6_okgng")
-FADE_DURATION = 5.0

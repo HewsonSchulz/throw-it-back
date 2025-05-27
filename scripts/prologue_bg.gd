@@ -8,7 +8,6 @@ extends AnimatedSprite2D
 @onready var message_timer = $"../Message/MessageTimer"
 var is_active: bool = false
 signal hide_message
-signal kill_message
 
 func set_fade(value: float):
 	# modifies shader `fade` parameter
@@ -35,13 +34,15 @@ func fade(delay: float, duration: float):
 
 
 func _input(e):
+	if e.is_action_pressed('esc'):
+		# quit game
+		get_tree().quit()
+
 	if not is_active or bg.frame >= 2:
 		return
 
-	# if any key is pressed - including mouse-down, not including `esc`
-	if (e is InputEventKey and e.pressed and e.keycode != KEY_ESCAPE) or \
-	   (e is InputEventMouseButton and e.pressed):
-		
+	# if left-click
+	if e.is_action_pressed('left-click'):
 		# reset message timer
 		message_timer.wait_time = 12
 		message_timer.start()
@@ -66,6 +67,8 @@ func _input(e):
 		await tween.finished
 		
 		if bg.frame >= 2:
-			kill_message.emit()
+			# begin main
+			get_tree().change_scene_to_file("res://scenes/root.tscn")
+
 		else:
 			is_active = true

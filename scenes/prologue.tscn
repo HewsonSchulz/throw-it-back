@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://ocimpspks2fu"]
+[gd_scene load_steps=18 format=3 uid="uid://ocimpspks2fu"]
 
+[ext_resource type="Shader" path="res://shaders/pixel_art_WINDOW.gdshader" id="1_6gv3g"]
 [ext_resource type="Shader" path="res://shaders/pixel_art.gdshader" id="1_7jfds"]
 [ext_resource type="Texture2D" uid="uid://vf3asswa033p" path="res://assets/sprites/BG1.png" id="1_rugtm"]
 [ext_resource type="Texture2D" uid="uid://cdoqnbmri6qtp" path="res://assets/sprites/BG2.png" id="2_g6r60"]
@@ -52,6 +53,12 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m5tse"]
+shader = ExtResource("1_6gv3g")
+shader_parameter/pixel_size = 10.0
+shader_parameter/fade = 1.0
+shader_parameter/color_levels = 16
+
 [node name="Prologue" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -76,7 +83,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("7_aheay")
 theme_override_font_sizes/font_size = 55
-text = "press any key"
+text = "click to continue"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_uvv1o")
@@ -87,11 +94,17 @@ wait_time = 6.0
 one_shot = true
 autostart = true
 
+[node name="PixelView" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_m5tse")
+offset_left = -512.0
+offset_top = -288.0
+offset_right = 512.0
+offset_bottom = 288.0
+
 [node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_x3afy")
 volume_db = 2.0
 bus = &"SFX"
 
 [connection signal="hide_message" from="BG" to="Message" method="_on_bg_hide_message"]
-[connection signal="kill_message" from="BG" to="Message" method="_on_bg_kill_message"]
 [connection signal="timeout" from="Message/MessageTimer" to="Message" method="_on_timer_timeout"]

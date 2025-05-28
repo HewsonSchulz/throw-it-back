@@ -9,6 +9,8 @@ enum GameState {
 var current_state: GameState = GameState.IDLE
 
 @onready var bg2 = $BG2
+@onready var splash = $Splash
+@onready var reel = $Reel
 
 @export_range(0, 2.0, 0.1) var fishing_fade: float = 0.5
 
@@ -24,6 +26,8 @@ func _input(e):
 
 	if e.is_action_pressed('left-click') and current_state == GameState.IDLE:
 		# go fish!
+		create_tween().tween_property(reel, "volume_db", -30, fishing_fade * 4)
+
 		bg2.material.set_shader_parameter("alpha_fade", 0.0)
 		create_tween().tween_property(bg2.material, "shader_parameter/alpha_fade", 1.0, fishing_fade)
 
@@ -38,4 +42,5 @@ func _input(e):
 
 func _on_minigame_finished():
 	create_tween().tween_property(bg2.material, "shader_parameter/alpha_fade", 0.0, fishing_fade)
+	create_tween().tween_property(reel, "volume_db", -80, fishing_fade)
 	current_state = GameState.IDLE

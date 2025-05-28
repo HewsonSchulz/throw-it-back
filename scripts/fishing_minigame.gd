@@ -9,6 +9,7 @@ var tile_scene: PackedScene = preload("res://scenes/tile.tscn")
 
 const GRID_SIZE_PX = Vector2(400, 400)
 var unique_color: Color
+var correct_tile: ColorRect
 
 signal finished
 
@@ -43,11 +44,16 @@ func generate_grid():
 
 		if i == special_tile_index:
 			tile.color = unique_color
+			correct_tile = tile
 		else:
 			tile.color = apply_shade_variance(base_color, color_variance)
 
 		tile.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		tile.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		tile.mouse_filter = Control.MOUSE_FILTER_STOP
+
+		tile.connect("gui_input", Callable(self, "_on_tile_gui_input").bind(tile))
+
 		grid.add_child(tile)
 
 func apply_shade_variance(base: Color, variance: float) -> Color:
@@ -64,3 +70,11 @@ func generate_unique_color_from_difficulty(base: Color, _difficulty: int) -> Col
 
 	var new_hue = fmod(base.h + hue_diff, 1.0)
 	return Color.from_hsv(new_hue, base.s, base.v, base.a)
+
+func _on_tile_gui_input(e: InputEvent, tile: ColorRect):
+	if e.is_action_pressed("left-click") and tile == correct_tile:
+			end_game()
+
+func end_game():
+	emit_signal("finished")
+	queue_free()

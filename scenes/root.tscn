@@ -64,6 +64,11 @@ material = SubResource("ShaderMaterial_x45lx")
 sprite_frames = SubResource("SpriteFrames_wqxb7")
 frame = 2
 
+[node name="BG2" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_x45lx")
+sprite_frames = SubResource("SpriteFrames_wqxb7")
+frame = 3
+
 [node name="PixelView" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_c1bla")
 offset_left = -512.0

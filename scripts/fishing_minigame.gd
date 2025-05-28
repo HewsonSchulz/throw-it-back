@@ -4,14 +4,15 @@ extends Control
 @export var depth: int = 1
 @export var base_color: Color = Color(1, 1, 1)
 @export_range(0.2, 0.6, 0.1) var color_variance: float = 0.2
-
 @onready var grid: GridContainer = $Grid
 var tile_scene: PackedScene = preload("res://scenes/tile.tscn")
 
 const GRID_SIZE_PX = Vector2(400, 400)
-
 var unique_color: Color
-	
+
+signal finished
+
+
 func _ready():
 	randomize()
 	grid.custom_minimum_size = GRID_SIZE_PX

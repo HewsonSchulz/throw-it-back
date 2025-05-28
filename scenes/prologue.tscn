@@ -15,6 +15,7 @@
 shader = ExtResource("1_7jfds")
 shader_parameter/pixel_size = 1.0
 shader_parameter/fade = 1.0
+shader_parameter/alpha_fade = 1.0
 shader_parameter/color_levels = 100
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tcid8"]

@@ -5,6 +5,7 @@ extends Label
 @export var wait_time: float = 0.0
 @export var fade_in_duration: float = 1.0
 @onready var timer = $MessageTimer
+var alpha_tween: Tween
 
 
 func _ready():
@@ -26,8 +27,11 @@ func _ready():
 
 func _on_timer_timeout():
 	# fade in
-	create_tween().tween_property(self, "modulate:a", 1.0, fade_in_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	alpha_tween = create_tween()
+	alpha_tween.tween_property(self, "modulate:a", 1.0, fade_in_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 
 func _on_bg_hide_message():
+	if alpha_tween and alpha_tween.is_valid():
+		alpha_tween.kill()
 	modulate.a = -0.0  # hide

@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/root.gd" id="1_ewk7w"]
 [ext_resource type="Shader" path="res://shaders/pixel_art.gdshader" id="2_1rr56"]
-[ext_resource type="Texture2D" uid="uid://vf3asswa033p" path="res://assets/sprites/BG1.png" id="3_21dop"]
+[ext_resource type="Texture2D" uid="uid://vf3asswa033p" path="res://assets/sprites/backgrounds/BG1.png" id="3_21dop"]
 [ext_resource type="Shader" path="res://shaders/pixel_art_WINDOW.gdshader" id="3_kbogb"]
-[ext_resource type="Texture2D" uid="uid://cdoqnbmri6qtp" path="res://assets/sprites/BG2.png" id="4_4284t"]
-[ext_resource type="Texture2D" uid="uid://buoyi231w53ne" path="res://assets/sprites/BG4.jpg" id="5_o0eyg"]
-[ext_resource type="Texture2D" uid="uid://btgrtrg8xvfid" path="res://assets/sprites/BG3.png" id="6_duca0"]
+[ext_resource type="Texture2D" uid="uid://cdoqnbmri6qtp" path="res://assets/sprites/backgrounds/BG2.png" id="4_4284t"]
+[ext_resource type="Texture2D" uid="uid://buoyi231w53ne" path="res://assets/sprites/backgrounds/BG4.jpg" id="5_o0eyg"]
+[ext_resource type="Texture2D" uid="uid://btgrtrg8xvfid" path="res://assets/sprites/backgrounds/BG3.png" id="6_duca0"]
 [ext_resource type="AudioStream" uid="uid://ed8vd36vfyhq" path="res://assets/audio/splash1.mp3" id="8_0naug"]
 [ext_resource type="AudioStream" uid="uid://df8olcs5ov8jy" path="res://assets/audio/fishing-reel.mp3" id="9_jhtbb"]
 

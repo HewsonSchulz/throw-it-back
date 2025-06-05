@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://h1i6xxu7l41h"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_2nsdr"]
+[ext_resource type="Texture2D" uid="uid://dmikcvrh1ouh" path="res://assets/sprites/backgrounds/BG5.jpg" id="1_aw0o2"]
+[ext_resource type="Shader" path="res://shaders/pixel_art_WINDOW.gdshader" id="2_74nlr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c4bn7"]
+texture = ExtResource("1_aw0o2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1urqg"]
+shader = ExtResource("2_74nlr")
+shader_parameter/pixel_size = 10.0
+shader_parameter/fade = 1.0
+shader_parameter/color_levels = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8uk78"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2nsdr")
+
+[node name="BG" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_c4bn7")
+
+[node name="PixelView" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_1urqg")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1674.0
+offset_top = -942.0
+offset_right = 1674.0
+offset_bottom = 942.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -547.5
+offset_top = -1043.0
+offset_right = 547.5
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 50
+
+[node name="Begin" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 150
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8uk78")
+text = "Begin"
+
+[node name="Settings" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 150
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8uk78")
+text = "Settings"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 150
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8uk78")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Begin" to="." method="_on_start"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit"]

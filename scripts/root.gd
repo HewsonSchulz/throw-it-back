@@ -20,9 +20,9 @@ func _ready():
 	bg2.material.set_shader_parameter("alpha_fade", 0.0)
 
 func _input(e):
-	if e.is_action_pressed('esc'):
-		# quit game
-		get_tree().quit()
+	#! if e.is_action_pressed('esc'):
+		#! quit game
+		#! get_tree().quit()
 
 	if e.is_action_pressed('left-click') and current_state == GameState.IDLE:
 		# go fish!
